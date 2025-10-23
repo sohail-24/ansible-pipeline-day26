@@ -12,9 +12,11 @@ pipeline {
   stage("ansible") {
    steps {
     sshagent(credentials: ["vm-ssh-key"]) {
-     sh "ansible-playbook nginx_deploy.yml -i inventory.ini"
+                     
+     withCredentials([string(credentialsId: 'ubuntu-pass', variable: 'SUDO_PASS')]) {
+      sh 'ansible-playbook nginx_deploy.yml -i inventory.ini --extra-vars "ansible_become_pass=$SUDO_PASS"'
 }
-
+}
 }
 
 }
