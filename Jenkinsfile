@@ -5,7 +5,7 @@ pipeline {
 
   stage("git"){
    steps {
-    git branch: "main", url: "https://github.com/sohail-24/ansible-day26.git"
+    git branch: "main", url: "https://github.com/sohail-24/ansible-pipeline-day26.git"
 }
 
 }
