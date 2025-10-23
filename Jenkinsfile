@@ -11,9 +11,9 @@ pipeline {
 }
   stage("ansible") {
    steps {
-    
-    sh "ansible-playbook nginx_deploy.yml -i inventory.ini"
-
+    sshagent(credentials: ["vm-ssh-key"]) {
+     sh "ansible-playbook nginx_deploy.yml -i inventory.ini"
+}
 
 }
 
